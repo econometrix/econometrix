@@ -1,0 +1,41 @@
+# secure htaccess file
+<Files .htaccess>
+order allow,deny
+deny from all
+</Files>
+ 
+# prevent viewing of a specific file
+<Files secretfile.jpg>
+ order allow,deny
+ deny from all
+</Files>
+ 
+# multiple file types
+<FilesMatch ".(htaccess|htpasswd|ini|phps|fla|psd|log|sh)$">
+ Order Allow,Deny
+ Deny from all
+</FilesMatch>
+
+#take off html and php extension
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*)$ $1.html
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php
+
+#disable case sensitive
+CheckSpelling On
+
+RewriteCond %{HTTP_HOST} ^([^\.]+\.[^\.]+)$
+RewriteRule ^(.*)$ http://www.%1/$1 [R=301,L]
+RewriteCond %{HTTP_HOST} ^([^\.]+\.(com|org|gob|edu|net)\.[^\.]+)$ [NC]
+RewriteRule ^(.*)$ http://www.%1/$1 [R=301,L]
+
+#error page
+ErrorDocument 404 /error/404 
+ErrorDocument 500 /error/500
+
+#root page
+DirectoryIndex app/web/index.php
+
