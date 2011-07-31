@@ -1,7 +1,11 @@
 <?php
-include_once "../../config/connection.php";
+include_once "../../config/ini.php";
+include_once"../../includes/util.php";
 
-$select='SELECT * FROM usuario WHERE
+$util = new  Util();
+$util->conectar();
+
+$select='SELECT * FROM '.MYSQL_BASE_USUARIOS.' WHERE
 		id = '.$_REQUEST['id'];
 $query = mysql_query($select);
 
@@ -27,7 +31,7 @@ if($query){
 	}
 	
 if(isset($_POST['cmd']) && $_POST['cmd']== 'edit'){
-	$sql = "UPDATE usuario SET nome = '".$_POST['nome']."', apelido = '".$_POST['apelido']."',
+	$sql = "UPDATE ".MYSQL_BASE_USUARIOS." SET nome = '".$_POST['nome']."', apelido = '".$_POST['apelido']."',
 	email ='".$_POST['email']."', senha = '".$_POST['senha']."', status = ".$_POST['status'].", updated_at = NOW()  WHERE id = ".$_POST['id'];
 	
 	$res = mysql_query($sql);
@@ -41,7 +45,7 @@ if(isset($_POST['cmd']) && $_POST['cmd']== 'edit'){
 }
 ?>
 <div>
-<h2>Editar Usuário</h2>
+<h2>Editar Usu&aacute;rio</h2>
 </div>
 
 <form method="post" id="form" action="edit.php">

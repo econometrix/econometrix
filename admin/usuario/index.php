@@ -1,13 +1,16 @@
 <?php
-include_once "../../config/connection.php";
+include_once "../../config/ini.php";
 include_once"../../includes/util.php";
+
 $util = new  Util();
+$util->conectar();
 
 function listar(){
+	
 global $util;
-$util->lista_paginacao('usuario', $_GET['pg']);
+$util->lista_paginacao(MYSQL_BASE_USUARIOS, $_GET['pg']);
 
-$sql = "SELECT * FROM usuario ORDER BY id DESC LIMIT ".$util->get_ini_reg_paginacao().",". $util->get_qtd_reg_paginacao();
+$sql = "SELECT * FROM ".MYSQL_BASE_USUARIOS." ORDER BY id DESC LIMIT ".$util->get_ini_reg_paginacao().",". $util->get_qtd_reg_paginacao();
 $res = mysql_query($sql);
 while($row = mysql_fetch_array($res)){
 		echo '<tr>';
@@ -29,8 +32,8 @@ while($row = mysql_fetch_array($res)){
 	<div>
 		<div>
 			<div>
-				<h2>Usuários</h2>
-				<a href="new.html">Novo</a></div>
+				<h2>Usu&aacute;rios</h2>
+				<a href="new.php">Novo</a></div>
 				
 				<div>
 					<table width="100%" border="1" cellspacing="0" cellpadding="0">
@@ -47,7 +50,7 @@ while($row = mysql_fetch_array($res)){
 						</tr>
 							<?php listar();?>
 					</table>
-					<div align="center"><?php  $util->chama_paginacao('usuario', $_GET['pg']);?></div>
+					<div align="center"><?php  $util->chama_paginacao(MYSQL_BASE_USUARIOS, $_GET['pg']);?></div>
 				</div>
 			</div>
 		</div>

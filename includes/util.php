@@ -5,31 +5,37 @@ Arquivo onde serao armazenados as fucoes de uso geral.
 Autores : Custodio Neto e Rodrigo Vasconcelos
 
 */
-include_once "../../config/connection.php";
+include_once "../../config/ini.php";
+
 class Util{
-	private $numreg;
-	private $inicial;
+	private $qtd_reg_paginacao;
+	private $ini_reg_paginacao;
+	
+	public function conectar(){
+		$con = mysql_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASS);
+		$bd = mysql_select_db(MYSQL_BASE, $con);
+		
+		return bd;
+	}
 	
 	public function set_qtd_reg_paginacao($qtd_reg_paginacao){
-		$this->numreg = $qtd_reg_paginacao;
+		$this->qtd_reg_paginacao = $qtd_reg_paginacao;
 	}
 	
 	public function get_qtd_reg_paginacao(){
-		return $this->numreg ;
+		return $this->qtd_reg_paginacao ;
 	}
 	
 	public function set_ini_reg_paginacao($ini_reg_paginacao){
-		$this->inicial = $ini_reg_paginacao;
+		$this->ini_reg_paginacao = $ini_reg_paginacao;
 	}
 	
 	public function get_ini_reg_paginacao(){
-		return $this->inicial ;
+		return $this->ini_reg_paginacao ;
 	}
 	
 	public function lista_paginacao($tabela, $pg){
-		//$numreg = 3;
-		$this->set_qtd_reg_paginacao(3);
-		//$pg = $_GET['pg'];
+		$this->set_qtd_reg_paginacao(10);
 		if (!isset($pg)) {
 			$pg = 0;
 		}
@@ -58,7 +64,7 @@ class Util{
 				echo "&nbsp;<a href=".$PHP_SELF."?pg=$i_pg2><b>$i_pg</b></a>&nbsp;";
 			}
 		}
-		// Verifica se esta na ultima p?gina, se nao estiver ele libera o link para pr?xima
+		// Verifica se esta na ultima pagina, se nao estiver ele libera o link para pr?xima
 		if (($pg+2) < $quant_pg) {
 			echo "<a href=".$PHP_SELF."?pg=".($pg+1)."><b>pr&oacute;ximo&raquo;</b></a>";
 		}else{
