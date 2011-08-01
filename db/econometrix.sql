@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.1.3.1
+-- version 3.3.9.2
 -- http://www.phpmyadmin.net
 --
--- Servidor: localhost
--- Tempo de Geração: Jul 31, 2011 as 02:51 AM
--- Versão do Servidor: 5.1.33
--- Versão do PHP: 5.2.9
+-- Serveur: localhost
+-- Généré le : Lun 01 Août 2011 à 00:41
+-- Version du serveur: 5.5.9
+-- Version de PHP: 5.3.5
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -16,16 +16,16 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Banco de Dados: `econometrix`
+-- Base de données: `econometrix`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `usuario`
+-- Structure de la table `econ_usuarios`
 --
 
-CREATE TABLE IF NOT EXISTS `usuario` (
+CREATE TABLE `econ_usuarios` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(255) NOT NULL,
   `apelido` varchar(255) NOT NULL,
@@ -35,15 +35,19 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
 
 --
--- Extraindo dados da tabela `usuario`
+-- Contenu de la table `econ_usuarios`
 --
 
-INSERT INTO `usuario` (`id`, `nome`, `apelido`, `email`, `senha`, `status`, `created_at`, `updated_at`) VALUES
-(10, 'rodrigo', 'minguis', 'feliperodrigo@gmail.com', '1234568', 0, '2011-07-30 23:07:29', '2011-07-30 23:57:54'),
-(9, 'nome 2', 'apelido 2', 'email 2', 'senha', 1, '2011-07-30 22:40:31', '2011-07-30 22:40:31'),
-(7, 'teste', 'teste', 'teste', 'teste', 1, '2011-07-30 21:02:23', '2011-07-30 21:02:23'),
-(11, 'fghfghgh', 'hjghj', 'ghjghj', 'hgjghjhj', 0, '2011-07-30 23:07:50', '2011-07-30 23:07:50'),
-(12, 'd', 'df', 'df', 'df', 0, '2011-07-30 23:19:18', '2011-07-30 23:19:18');
+INSERT INTO `econ_usuarios` VALUES(10, 'rodrigo', 'minguis', 'feliperodrigo@gmail.com', '1234568', 0, '2011-07-30 23:07:29', '2011-07-30 23:57:54');
+INSERT INTO `econ_usuarios` VALUES(20, 'oloco', 'oloco', 'oloco@oloco.com', 'czczxcxcxz', 1, '2011-07-31 21:55:26', '2011-07-31 21:55:26');
+INSERT INTO `econ_usuarios` VALUES(18, 'zeca', 'zeca', 'tes@tes.com', 'gjkkj', 1, '2011-07-31 21:32:01', '2011-07-31 21:32:01');
+INSERT INTO `econ_usuarios` VALUES(21, 'piao', 'piao', 'piao@piao.com', 'sdvdsf', 1, '2011-07-31 21:57:34', '2011-07-31 21:57:34');
+INSERT INTO `econ_usuarios` VALUES(19, 'tucano', 'tucano', 'tucano@tucano.com', 'asdasdasda', 1, '2011-07-31 21:53:42', '2011-07-31 21:53:42');
+INSERT INTO `econ_usuarios` VALUES(15, 'form', 'form', 'form@form.com', 'form', 1, '2011-07-31 19:17:21', '2011-07-31 19:17:21');
+INSERT INTO `econ_usuarios` VALUES(16, '232323', '232323', 'admin@email.com', '34343434', 1, '2011-07-31 19:19:54', '2011-07-31 19:19:54');
+INSERT INTO `econ_usuarios` VALUES(17, 'locator', 'locator', 'admin@teste.com', 'wewewe', 1, '2011-07-31 19:20:59', '2011-07-31 19:20:59');
+INSERT INTO `econ_usuarios` VALUES(22, 'jackson', 'michael', 'michel@gmail.com', 'dcvsdvd', 1, '2011-07-31 21:59:43', '2011-08-01 00:33:09');
+INSERT INTO `econ_usuarios` VALUES(23, 'disco', 'disc', 'disc@disc.com', 'zcxcxz', 1, '2011-07-31 23:45:53', '2011-08-01 00:36:29');

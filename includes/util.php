@@ -35,7 +35,7 @@ class Util{
 	}
 	
 	public function lista_paginacao($tabela, $pg){
-		$this->set_qtd_reg_paginacao(10);
+		$this->set_qtd_reg_paginacao(3);
 		if (!isset($pg)) {
 			$pg = 0;
 		}

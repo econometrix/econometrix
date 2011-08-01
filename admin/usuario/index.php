@@ -46,7 +46,7 @@ while($row = mysql_fetch_array($res)){
 							<th>Status</th>
 							<th>Criado</th>
 							<th>Alterado</th>
-							<th width="110">&nbsp;</th>
+							<th width="110">A&ccedil;&otilde;es</th>
 						</tr>
 							<?php listar();?>
 					</table>
