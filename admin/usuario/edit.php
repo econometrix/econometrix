@@ -1,5 +1,5 @@
 <?php
-include_once"usuario_controller.php";
+include_once"controller/usuario_controller.php";
 $usuario = new  UsuarioController();
 $usuario->_edit($_REQUEST['id']);
 ?>
@@ -33,7 +33,7 @@ $usuario->_edit($_REQUEST['id']);
                     data: dados,  
                     success: function()  
                     {  
-                      alert('inserido');
+                      alert('alterado');
 					  location.href="index.php";
                     }  
                 });  
@@ -56,31 +56,31 @@ $usuario->_edit($_REQUEST['id']);
 	<div>
 	<p>
 	<label>Nome<span>(Necessario)</span></label>
-	<input name="nome" type="text" value="<?php echo $usuario->getNome();?>" >
+	<input name="nome" type="text" value="<?php echo $usuario->get_nome();?>" >
 	</p>
 	<p>
 	<label>Apelido<span>(Necessario)</span></label>
-	<input name="apelido" type="text" value="<?php echo $usuario->getApelido();?>">
+	<input name="apelido" type="text" value="<?php echo $usuario->get_apelido();?>">
 	</p>
 	<p>
 	<label>E-mail<span>(Necessario)</span></label>
-	<input name="email" type="text" value="<?php echo $usuario->getEmail();?>">
+	<input name="email" type="text" value="<?php echo $usuario->get_email();?>">
 	</p>
 
 	<p>
 	<label>Senha<span>(Necessario)</span></label>
-	<input name="senha" type="password" value="<?php echo $usuario->getSenha();?>">
+	<input name="senha" type="password" value="<?php echo $usuario->get_senha();?>">
 	</p>
 	<p>
 	<p>
 	<label>Status : <span>(Necessario)</span></label>
-	<input type="radio" name="status" value="1" <?php echo $usuario->getAtivado();?>> Ativado
-	<input type="radio" name="status" value="0" <?php echo $usuario->getDesativado();?>> Desativado<br>
+	<input type="radio" name="status" value="1" <?php echo $usuario->get_ativado();?>> Ativado
+	<input type="radio" name="status" value="0" <?php echo $usuario->get_desativado();?>> Desativado<br>
 	</p>
 	</div>
 	<div>
 	<input name="cmd" type="hidden" value="edit">
-	<input type="hidden" name="id" value="<?php echo $usuario->getId();?>" />
+	<input type="hidden" name="id" value="<?php echo $usuario->get_id();?>" />
 	<input name="submit" type="submit" value="Concluir">
 	<input type="button" value="Voltar" onclick="javascript: history.go(-1)">
 	</div>

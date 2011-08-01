@@ -1,5 +1,5 @@
 <?php
-include_once"usuario_controller.php";
+include_once"controller/usuario_controller.php";
 $usuario = new  UsuarioController();
 $usuario->_new();
 ?>

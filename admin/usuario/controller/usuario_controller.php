@@ -28,91 +28,94 @@ class UsuarioController{
 	    $this->util->conectar();
 	}
 	//TODO : aplicar em um helper
-	public function getDesativado() {
+	public function get_desativado() {
        return $this->desativado;
 	}
 	
-	public function setDesativado($desativado) {
+	public function set_desativado($desativado) {
        $this->desativado = $desativado;
     }	
 
-    public function getAtivado() {
+    public function get_ativado() {
        return $this->ativado;
 	}
 	
-	public function setAtivado($ativado) {
+	public function set_ativado($ativado) {
        $this->ativado = $ativado;
     }
 	//TODO - end
 	
 	
 	//TODO: aplicar em um model
-	public function getId() {
+	public function get_id() {
        return $this->id;
 	}
 	
-	public function setId($id) {
+	public function set_id($id) {
        $this->id = $id;
     }	
 
-    public function getNome() {
+    public function get_nome() {
        return $this->nome;
 	}
 	
-	public function setNome($nome) {
+	public function set_nome($nome) {
        $this->nome = $nome;
     }
 	
-    public function getApelido() {
+    public function get_apelido() {
        return $this->apelido;
 	}
 	
-	public function setApelido($apelido) {
+	public function set_apelido($apelido) {
        $this->apelido = $apelido;
     }
 
-    public function getEmail() {
+    public function get_email() {
        return $this->email;
 	}
 	
-	public function setEmail($email) {
+	public function set_email($email) {
        $this->email = $email;
     }
 
-	public function getSenha() {
+	public function get_senha() {
        return $this->senha;
 	}
 	
-	public function setSenha($senha) {
+	public function set_senha($senha) {
        $this->senha = $senha;
     }
 
-    public function getStatus() {
+    public function get_status() {
        return $this->status;
 	}
 	
-	public function setStatus($status) {
+	public function set_status($status) {
        $this->status = $status;
     }
 
-    public function getCreated_at() {
+    public function get_created_at() {
        return $this->created_at;
 	}
 	
-	public function setCreated_at($created_at) {
+	public function set_created_at($created_at) {
        $this->nome = $created_at;
     }
 
-    public function getUpdated_at() {
+    public function get_updated_at() {
        return $this->updated_at;
 	}
 	
-	public function setUpdated_at($updated_at) {
+	public function set_updated_at($updated_at) {
        $this->updated_at = $updated_at;
     }
 
 	//TODO - end
-
+	
+	public function _index(){
+		
+	} 
 	public function _new(){
 		if(isset($_POST['cmd']) && $_POST['cmd']== 'new') {   
 			$sql = "INSERT INTO ".MYSQL_BASE_USUARIOS." (nome, apelido, email, senha, status, created_at, updated_at)
@@ -148,27 +151,24 @@ class UsuarioController{
 		$select='SELECT * FROM '.MYSQL_BASE_USUARIOS.' WHERE
 				id = '.$id;
 		$query = mysql_query($select);
-
 		if($query){
 			if(mysql_num_rows($query) > 0){
 				$row = mysql_fetch_array($query);
-				$this->setId($row['id']);
-				$this->setNome($row['nome']);
-				$this->setApelido($row['apelido']);
-				$this->setEmail($row['email']);
-				$this->setSenha($row['senha']);
+				$this->set_id($row['id']);
+				$this->set_nome($row['nome']);
+				$this->set_apelido($row['apelido']);
+				$this->set_email($row['email']);
+				$this->set_senha($row['senha']);
 
 				if($row['status'] == 1){
-					$this->setAtivado('checked');
+					$this->set_ativado('checked');
 				}else{
-					$this->setDesativado('checked');
-				}
-				
+					$this->set_desativado('checked');
+				}				
 			}
 			}else{
 				'Erro : '.mysql_error();
-			}
-			
+			}			
 			return $this;
    }
 }
