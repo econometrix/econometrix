@@ -100,7 +100,7 @@ class UsuarioController{
 	}
 	
 	public function set_created_at($created_at) {
-       $this->nome = $created_at;
+       $this->created_at = $created_at;
     }
 
     public function get_updated_at() {
@@ -115,7 +115,6 @@ class UsuarioController{
 	
 	public function _list(){
 		$sql = "SELECT * FROM ".MYSQL_BASE_USUARIOS." ORDER BY id DESC ";
-
 		$res = mysql_query($sql);
 		if(mysql_num_rows($res) > 0){
 			$lista = array();
@@ -129,7 +128,8 @@ class UsuarioController{
 				$lista[$i]->set_senha($row['senha']);
 				$lista[$i]->set_status($row['status']);
 				$lista[$i]->set_created_at($row['created_at']);
-				$lista[$i]->set_updated_at($row['updated_at']);				
+				$lista[$i]->set_updated_at($row['updated_at']);
+				
 				$i++;
 			}	
 			return $lista;
