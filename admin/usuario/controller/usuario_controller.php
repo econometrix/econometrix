@@ -113,8 +113,29 @@ class UsuarioController{
 
 	//TODO - end
 	
-	public function _index(){
-		
+	public function _list(){
+		$sql = "SELECT * FROM ".MYSQL_BASE_USUARIOS." ORDER BY id DESC ";
+
+		$res = mysql_query($sql);
+		if(mysql_num_rows($res) > 0){
+			$lista = array();
+			$i = 0;
+			while($row = mysql_fetch_array($res)){
+				$lista[$i] = new UsuarioController();
+				$lista[$i]->set_id($row['id']);
+				$lista[$i]->set_nome($row['nome']);
+				$lista[$i]->set_apelido($row['apelido']);
+				$lista[$i]->set_email($row['email']);
+				$lista[$i]->set_senha($row['senha']);
+				$lista[$i]->set_status($row['status']);
+				$lista[$i]->set_created_at($row['created_at']);
+				$lista[$i]->set_updated_at($row['updated_at']);				
+				$i++;
+			}	
+			return $lista;
+		} else{
+			return false;
+		}
 	} 
 	public function _new(){
 		if(isset($_POST['cmd']) && $_POST['cmd']== 'new') {   

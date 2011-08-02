@@ -1,5 +1,5 @@
 <?php
-include_once "../../config/ini.php";
+/*include_once "../../config/ini.php";
 include_once"../../includes/util.php";
 
 $util = new  Util();
@@ -7,7 +7,7 @@ $util->conectar();
 
 function listar(){	
 	global $util;
-	$util->lista_paginacao(MYSQL_BASE_USUARIOS, $_GET['pg']);
+//	$util->lista_paginacao(MYSQL_BASE_USUARIOS, $_GET['pg']);
 
 	$sql = "SELECT * FROM ".MYSQL_BASE_USUARIOS." ORDER BY id DESC LIMIT ".$util->get_ini_reg_paginacao().",". 	$util->get_qtd_reg_paginacao();
 	$res = mysql_query($sql);
@@ -28,7 +28,11 @@ function listar(){
 	} else{
 		return false;
 	}	
-}
+} */
+include_once"controller/usuario_controller.php";
+
+$usuario = new  UsuarioController();
+$user = $usuario->_list();
 ?>
 <div>
 	<div>&nbsp;</div>
@@ -37,7 +41,6 @@ function listar(){
 			<div>
 				<h2>Usu&aacute;rios</h2>
 				<a href="new.php">Novo</a></div>
-				
 				<div>
 					<table width="100%" border="1" cellspacing="0" cellpadding="0">
 						<tr>
@@ -51,9 +54,23 @@ function listar(){
 							<th>Alterado</th>
 							<th width="110">A&ccedil;&otilde;es</th>
 						</tr>
-							<?php listar();?>
+						
+						<?php foreach($user as $u): ?>
+							<tr>
+							<td>&nbsp;</td>
+							<td><h3><?= $u->get_nome();?></h3></td>
+							<td><h3><?= $u->get_apelido();?></h3></td>
+							<td><h3><?= $u->get_email();?></h3></td>
+							<td><h3><?= $u->get_senha();?></h3></td>
+							<td><h3><?= $u->get_status();?></h3></td>
+							<td><h3><?= $u->get_created_at();?></h3></td>
+							<td><h3><?= $u->get_updated_at();?></h3></td>
+							<td><a href="edit.php?id=<?= $u->get_id();?>" class=ico edit>Editar</a>&nbsp;&nbsp;<a href="delete.php?id=<?= $u->get_id();?>" class=ico del>Deletar</a></td>
+							</tr>
+							<?php endforeach; ?>
+							
 					</table>
-					<div align="center"><?php  $util->chama_paginacao(MYSQL_BASE_USUARIOS, $_GET['pg']);?></div>
+					<div align="center"><?php // $util->chama_paginacao(MYSQL_BASE_USUARIOS, $_GET['pg']);?></div>
 				</div>
 			</div>
 		</div>
